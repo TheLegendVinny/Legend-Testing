@@ -502,10 +502,6 @@ chat.registerCommand('kick', 'Kick a player, for admins only.', function (args) 
     socket.emit('kick', args);
 });
 
-chat.registerCommand('legend', 'Say I Love Legend In Chat', function love {
-    socket.emit('kick', args);
-});
-
 
 
 // socket stuff.
