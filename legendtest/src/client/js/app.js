@@ -561,7 +561,7 @@ function setupSocket(socket) {
 
     socket.on('leaderboard', function (data) {
         leaderboard = data.leaderboard;
-        var status = '<span class="title">Legends</span>';
+        var status = '<span class="title">Top Legends</span>';
         for (var i = 0; i < leaderboard.length; i++) {
             status += '<br />';
             if (leaderboard[i].id == player.id){
@@ -573,7 +573,7 @@ function setupSocket(socket) {
                 if(leaderboard[i].name.length !== 0)
                     status += (i + 1) + '. ' + leaderboard[i].name;
                 else
-                    status += (i + 1) + '. An unnamed cell';
+                    status += (i + 1) + '. Someone Who Does Not Know How To Put A Name In.';
             }
         }
         //status += '<br />Players: ' + data.players;
