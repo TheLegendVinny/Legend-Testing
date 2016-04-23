@@ -148,7 +148,7 @@ var foods = [];
 var viruses = [];
 var fireFood = [];
 var users = [];
-var leaderboard = [];
+var Legends = [];
 var target = {x: player.x, y: player.y};
 var reenviar = true;
 var directionLock = false;
@@ -502,6 +502,11 @@ chat.registerCommand('kick', 'Kick a player, for admins only.', function (args) 
     socket.emit('kick', args);
 });
 
+chat.registerCommand('legend', 'Say I Love Legend In Chat', function love {
+    socket.emit('kick', args);
+});
+
+
 
 // socket stuff.
 function setupSocket(socket) {
@@ -535,6 +540,7 @@ function setupSocket(socket) {
         debug('Game started at: ' + gameStart);
         chat.addSystemLine('Connected to the game!');
         chat.addSystemLine('Type <b>-help</b> for a list of commands.');
+        chat.addSystemLine('Are You A Admin? Type <b>-login (Admin Pass Here!)</b> for a list of commands.');
         if (mobile) {
             document.getElementById('gameAreaWrapper').removeChild(document.getElementById('chatbox'));
         }
@@ -559,19 +565,19 @@ function setupSocket(socket) {
         chat.addSystemLine('{GAME} - <b>' + (data.name.length < 1 ? 'An unnamed cell' : data.name) + '</b> joined.');
     });
 
-    socket.on('leaderboard', function (data) {
-        leaderboard = data.leaderboard;
-        var status = '<span class="title">Leaderboard</span>';
-        for (var i = 0; i < leaderboard.length; i++) {
+    socket.on('Legends', function (data) {
+        Legends = data.Legends;
+        var status = '<span class="title">Legends</span>';
+        for (var i = 0; i < Legends.length; i++) {
             status += '<br />';
-            if (leaderboard[i].id == player.id){
-                if(leaderboard[i].name.length !== 0)
-                    status += '<span class="me">' + (i + 1) + '. ' + leaderboard[i].name + "</span>";
+            if (Legends[i].id == player.id){
+                if(Legends[i].name.length !== 0)
+                    status += '<span class="me">' + (i + 1) + '. ' + Legends[i].name + "</span>";
                 else
                     status += '<span class="me">' + (i + 1) + ". An unnamed cell</span>";
             } else {
-                if(leaderboard[i].name.length !== 0)
-                    status += (i + 1) + '. ' + leaderboard[i].name;
+                if(Legends[i].name.length !== 0)
+                    status += (i + 1) + '. ' + Legends[i].name;
                 else
                     status += (i + 1) + '. An unnamed cell';
             }
